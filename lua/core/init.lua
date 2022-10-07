@@ -39,4 +39,4 @@ require("impatient")
 
 require("configs.autocomplete").config()
 require("configs.treesitter").config()
---require("configs.lsp").config()
+require("configs.bufferline").config()
