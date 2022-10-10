@@ -38,5 +38,6 @@ require("core.theme")
 require("impatient")
 
 require("configs.autocomplete").config()
+require("configs.statusline").config()
 require("configs.treesitter").config()
 require("configs.bufferline").config()
