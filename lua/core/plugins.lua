@@ -31,6 +31,7 @@ return require('packer').startup(function()
 	use 'mfussenegger/nvim-jdtls'
 
 	-- STATUS_LINE
+	use 'nvim-lualine/lualine.nvim'
 	
 	-- LSP_LINES
 	use{"https://git.sr.ht/~whynothugo/lsp_lines.nvim"}
