@@ -7,7 +7,7 @@ vim.opt.termguicolors	= true
 vim.opt.cursorline      = true
 vim.opt.autowrite       = true
 vim.opt.showmode		= false
-vim.opt.cmdheight		= 0
+vim.opt.cmdheight		= 1 
 vim.diagnostic.config({
 	virtual_text = false,
 	virtual_lines = true, 
