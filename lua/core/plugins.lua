@@ -30,6 +30,11 @@ return require('packer').startup(function()
 	use 'L3MON4D3/LuaSnip'
 	use 'mfussenegger/nvim-jdtls'
 
+	use {'ms-jpq/coq_nvim', branch = "coq"}
+	-- 9000+ Snippets
+	use {'ms-jpq/coq.artifacts', branch = "artifacts"}
+	use {'ms-jpq/coq.thirdparty', branch = "3p"}
+
 	-- STATUS_LINE
 	use 'nvim-lualine/lualine.nvim'
 	
