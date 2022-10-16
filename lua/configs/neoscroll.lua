@@ -1,11 +1,10 @@
 local M = {}
 
 	function M.config()
-
 		require 'neoscroll'.setup({
 
 		mappings = {'<C-u>', '<C-d>', '<C-f>',
-			        '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+			'<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
 
 		hide_cursor = true,          -- Hide cursor while scrolling
 		stop_eof = true,             -- Stop at <EOF> when scrolling downwards
@@ -16,6 +15,7 @@ local M = {}
 		post_hook = nil,             -- Function to run after the scrolling animation ends
 		performance_mode = false,
 		})
+
 	end
 
 return M
