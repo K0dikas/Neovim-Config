@@ -20,16 +20,13 @@ return require('packer').startup(function()
 	-- LANGUAGE
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'simrat39/rust-tools.nvim'
-	use 'glepnir/lspsaga.nvim'
 	use 'neovim/nvim-lspconfig'
-	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 	use 'L3MON4D3/LuaSnip'
 	use 'mfussenegger/nvim-jdtls'
-
 	use {'ms-jpq/coq_nvim', branch = "coq"}
 	-- 9000+ Snippets
 	use {'ms-jpq/coq.artifacts', branch = "artifacts"}
