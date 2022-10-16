@@ -33,6 +33,9 @@ return require('packer').startup(function()
 	-- STATUS_LINE
 	use 'nvim-lualine/lualine.nvim'
 	
+	-- SMOOTH_SCROLL
+	use 'karb94/neoscroll.nvim'
+
 	-- LSP_LINES
 	use{"https://git.sr.ht/~whynothugo/lsp_lines.nvim"}
 
