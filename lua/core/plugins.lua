@@ -22,8 +22,9 @@ return require('packer').startup(function()
 	-- LANGUAGE
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'simrat39/rust-tools.nvim'
-	-- use 'glenir/lspsaga.nvim'
+	use 'glepnir/lspsaga.nvim'
 	use 'neovim/nvim-lspconfig'
+	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
