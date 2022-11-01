@@ -17,7 +17,14 @@ return require('packer').startup(function()
 	}
 
 	-- FILE EXPLORER
-	use {'ms-jpq/chadtree', branch = "chad", requires = 'python3 -m chadtree deps'}
+	use {"nvim-neo-tree/neo-tree.nvim",
+		branch = "2.43",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			-- "kyazdani42/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		}
+	}	
 
 	-- LANGUAGE
 	use 'nvim-treesitter/nvim-treesitter'
