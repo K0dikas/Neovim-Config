@@ -18,31 +18,13 @@ if (vim.fn.has('termguicolors') == 1) then
 end
 
 -- TABS
-
 vim.opt.autoindent      = true
 vim.opt.tabstop         = 4
 vim.opt.shiftwidth      = 4
 vim.opt.softtabstop     = 4
 
-
-
--- KEYMAPS
-require("core.keymaps")
-
--- PLUGINS
-require("core.plugins")
-
--- THEME
-require("core.theme")
-
-
 -- LOAD PLUGIN CONFIGS
-require("impatient")
-
-require("configs.autocomplete").config()
 require("configs.statusline").config()
-require("configs.treesitter").config()
 require("configs.bufferline").config()
 require("configs.neoscroll").config()
 require("configs.filetype").config()
-require("configs.neo-tree").config()

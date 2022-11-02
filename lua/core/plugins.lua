@@ -1,7 +1,7 @@
 -- packer.nvim
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
-	use 'wbthomason/packer.nvim'
+	use {'wbthomason/packer.nvim', opt = true}
 
 	-- PERFORMANCE
 	use 'lewis6991/impatient.nvim'
@@ -12,31 +12,81 @@ return require('packer').startup(function()
 	use 'ellisonleao/gruvbox.nvim'
 
 	-- BUFFER
-	use {'akinsho/bufferline.nvim', tag = "v2.*",
-	requires = {'kyazdani42/nvim-web-devicons'}
+	use {'akinsho/bufferline.nvim', tag = "v3.*",
+	requires = 'kyazdani42/nvim-web-devicons'
+		
 	}
 
 	-- FILE EXPLORER
 	use {"nvim-neo-tree/neo-tree.nvim",
 		branch = "2.43",
+		config = function()
+			require("configs.neo-tree").config()
+		end,
 		requires = {
 			"nvim-lua/plenary.nvim",
-			-- "kyazdani42/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
 		}
 	}	
 
 	-- LANGUAGE
-	use 'nvim-treesitter/nvim-treesitter'
+	use {'nvim-treesitter/nvim-treesitter',
+		opt = true,
+		run = ':TSUpdate',
+		event = "BufRead",
+		config = function()
+			require("configs.treesitter").config()
+		end,
+	}
+
 	use 'simrat39/rust-tools.nvim'
 	use 'glepnir/lspsaga.nvim'
-	use 'neovim/nvim-lspconfig'
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'hrsh7th/nvim-cmp'
-	use 'L3MON4D3/LuaSnip'
+
+	use {"hrsh7th/nvim-cmp",
+		after = {'LuaSnip'},
+		config = function()
+			require("configs.autocomplete").config()
+		end,
+		requires = {
+			{
+				"hrsh7th/cmp-path",
+				after = 'nvim-cmp'
+			},
+
+			{
+				"L3MON4D3/LuaSnip",
+				event = 'InsertEnter'
+			},
+
+			{
+				"hrsh7th/cmp-cmdline",
+				after = 'nvim-cmp'
+			},
+
+			{
+				"hrsh7th/cmp-buffer",
+				after = 'nvim-cmp'
+			},
+
+			{
+				"hrsh7th/cmp-nvim-lsp",
+				after = 'nvim-cmp'
+			},
+
+			{
+				"L3MON4D3/LuaSnip",
+				event = 'InsertEnter'
+			},
+		}
+	}
+
+	use {'neovim/nvim-lspconfig',
+		after = "cmp-nvim-lsp",
+		config = function()
+			require("lspconfig")
+		end,
+	}
+
 	use 'mfussenegger/nvim-jdtls'
 
 	-- STATUS_LINE
@@ -55,9 +105,11 @@ return require('packer').startup(function()
 	-- AUTO_COMMENT
 	use {
     'numToStr/Comment.nvim',
+	opt = true,
+	keys = {"gc", "gcc", "gcb"},
     config = function()
-        require('Comment').setup()
-	end
+        require("Comment").setup{}
+	end,
 	}
 
 
