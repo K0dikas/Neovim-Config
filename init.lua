@@ -8,8 +8,10 @@ _G.__luacache_config = {
 		path = vim.fn.stdpath('cache')..'/luacache_modpaths',
 	}
 }
-require('impatient')
+require('impatient').enable_profile()
 
 vim.g.did_load_filetypes = 1
-require "core"
 require "core.init"
+require "core.theme"
+require "core.plugins"
+require "core.keymaps"
