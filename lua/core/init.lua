@@ -7,7 +7,7 @@ vim.opt.termguicolors	= true
 vim.opt.cursorline      = true
 vim.opt.autowrite       = true
 vim.opt.showmode		= false
-vim.opt.cmdheight		= 1 
+vim.opt.cmdheight		= 0
 vim.diagnostic.config({
 	virtual_text = false,
 	virtual_lines = true, 
@@ -24,7 +24,9 @@ vim.opt.shiftwidth      = 4
 vim.opt.softtabstop     = 4
 
 -- LOAD PLUGIN CONFIGS
-require("configs.statusline").config()
-require("configs.bufferline").config()
 require("configs.neoscroll").config()
+<<<<<<< HEAD
 require("configs.filetype").config()
+=======
+require("configs.filetype").config()
+>>>>>>> 68ebed7 (Removed some plugin initialization)
