@@ -12,8 +12,8 @@ function M.config()
         },
 
 		mapping = {
-            ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-            ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+            ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+            ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
             ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
             ['<C-y>'] = cmp.config.disable,
             ['<C-e>'] = cmp.mapping({
@@ -26,6 +26,7 @@ function M.config()
 		sources = cmp.config.sources({
              { name = 'nvim_lsp' },
         }, { { name = 'buffer' } })
+
     })
 
     -- nvim-cmp for commands
@@ -83,14 +84,25 @@ function M.config()
     })
 
     require("lsp_lines").setup{
-	
+
 		require('lspconfig')['rust_analyzer'].setup{
 
 			on_attach = on_attach,
 			flags = lsp_flags,
-			-- Server-specific settings...
 			settings = {
 				["rust-analyzer"] = {}
+			}
+		}
+	}
+
+    require("lsp_lines").setup{
+
+		require('lspconfig')['sumneko_lua'].setup{
+
+			on_attach = on_attach,
+			flags = lsp_flags,
+			settings = {
+				["sumneko_lua"] = {}
 			}
 		}
 	}
@@ -102,6 +114,23 @@ function M.config()
 			root_dir = function(fname)
 				return require'lspconfig'.util.root_pattern('pom.xml', 'gradle.build', '.git')(fname) or vim.fn.getcwd()
 			end
+		}
+	}
+
+	require("lsp_lines").setup{
+
+		require'lspconfig'.html.setup{
+			cmd = {"vscode-html-language-server", "--stdio"},
+			filetypes = {"html"},
+			init_options = {
+				configurationSection = { "html", "css", "javascript" },
+				embeddedLanguages = {
+					css = true,
+					javascript = true
+				},
+				provideFormatter = true
+			},
+			settings = {}
 		}
 	}
 	
@@ -118,70 +147,6 @@ function M.config()
             end
             callback({ items = items })
         end,
-    })
-
-	local saga = require 'lspsaga'
-
-    -- use default config
-    saga.init_lsp_saga({
-        border_style = "bold",
-        saga_winblend = 0,
-        move_in_saga = { prev = '<C-p>', next = '<C-n>' },
-        diagnostic_header = { " ", " ", " ", "ﴞ " },
-        max_preview_lines = 10,
-        code_action_icon = "",
-        code_action_num_shortcut = true,
-        code_action_lightbulb = {
-            enable = true,
-            enable_in_insert = true,
-            cache_code_action = true,
-            sign = true,
-            update_time = 150,
-            sign_priority = 20,
-            virtual_text = true,
-        },
-        -- finder icons
-        finder_icons = {
-            def = '  ',
-            ref = '諭 ',
-            link = '  ',
-        },
-        -- finder do lsp request timeout
-        -- if your project big enough or your server very slow
-        -- you may need to increase this value
-        finder_request_timeout = 1500,
-        finder_action_keys = {
-            open = "o",
-            vsplit = "s",
-            split = "i",
-            tabe = "t",
-            quit = "q",
-        },
-        code_action_keys = {
-            quit = "q",
-            exec = "<CR>",
-        },
-        definition_action_keys = {
-            edit = '<C-c>o',
-            vsplit = '<C-c>v',
-            split = '<C-c>i',
-            tabe = '<C-c>t',
-            quit = 'q',
-        },
-        rename_action_quit = "<C-c>",
-        rename_in_select = true,
-        show_outline = {
-            win_position = 'right',
-            win_with = '',
-            win_width = 30,
-            auto_enter = true,
-            auto_preview = true,
-            virt_text = '┃',
-            jump_key = 'o',
-            auto_refresh = true,
-        },
-        custom_kind = {},
-        server_filetype_map = {},
     })
 
     require('rust-tools').setup()
