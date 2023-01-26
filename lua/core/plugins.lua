@@ -8,18 +8,101 @@ return require('packer').startup(function()
 	use 'dstein64/vim-startuptime'
 	use 'nathom/filetype.nvim'
 
+	-- MASON
+	use {"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup({
+				ui = {
+					icons = {
+						package_installed = "✓",
+						package_pending = "➜",
+						package_uninstalled = "✗",
+					}
+				}
+			})
+		end,
+	}	
+	use {"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("configs.mason-lspconfig").config()
+		end,
+	}
+
+ 	-- GPT
+	use {"jackMort/ChatGPT.nvim",
+		config = function()
+			require("configs.chatgpt").config()
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim"
+		},
+	}
+
+	-- GIT SIGNS
+	use {'lewis6991/gitsigns.nvim',
+		config = function()
+			require('configs.gitsigns').config()
+		end,
+	}
+
 	-- COLORSCHEMES 
 	use 'ellisonleao/gruvbox.nvim'
 
 	-- BUFFER
-	use {'akinsho/bufferline.nvim', tag = "v3.*",
-	requires = 'kyazdani42/nvim-web-devicons'
-		
+	use {'romgrk/barbar.nvim',
+		requires = {'kyazdani42/nvim-web-devicons'},
+		config = function()
+			require("configs.bufferline").config()
+		end,
+	}
+
+	-- NOICE
+	use ({"folke/noice.nvim",
+		config = function()
+			require("configs.noice").config()
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		require("notify").setup({
+			fps = 120,
+			stages = "slide",
+			render = "default",
+		}),
+	})
+
+	-- EXPERIMENT
+	use {"K0dikas/panel.nvim",
+		branch = "experimental",
+		config = function()
+			require("panel").setup({
+					on_open = function(win)
+					local bufnr = vim.api.nvim_win_get_buf(win)
+					vim.api.nvim_win_set_cursor(win, {3, 1})
+					vim.api.nvim_win_set_option(win, "wrap", true)
+					vim.api.nvim_win_set_height(win, 50)
+
+					if bufnr then
+						vim.keymap.set("n", "<C-l>", require("panel").dismiss,
+						{noremap = true, silent = true, buffer = bufnr})
+					end
+				end,
+				max_width = 70,
+				max_height = 23,
+				minimum_width = 70,
+				stages = "slide",
+				render = "default",
+				fps = 60,
+			})
+		end,
 	}
 
 	-- FILE EXPLORER
 	use {"nvim-neo-tree/neo-tree.nvim",
-		branch = "2.43",
+		branch = "v2.x",
 		config = function()
 			require("configs.neo-tree").config()
 		end,
@@ -40,18 +123,19 @@ return require('packer').startup(function()
 	}
 
 	use 'simrat39/rust-tools.nvim'
-	use 'glepnir/lspsaga.nvim'
+
+	use {'neovim/nvim-lspconfig',
+		config = function()
+			require("lspconfig")
+		end,
+	}
 
 	use {"hrsh7th/nvim-cmp",
-		after = {'LuaSnip'},
+		event = "InsertEnter",
 		config = function()
 			require("configs.autocomplete").config()
 		end,
 		requires = {
-			{
-				"hrsh7th/cmp-path",
-				after = 'nvim-cmp'
-			},
 
 			{
 				"L3MON4D3/LuaSnip",
@@ -62,42 +146,32 @@ return require('packer').startup(function()
 				"hrsh7th/cmp-cmdline",
 				after = 'nvim-cmp'
 			},
-
-			{
-				"hrsh7th/cmp-buffer",
-				after = 'nvim-cmp'
-			},
-
+			
 			{
 				"hrsh7th/cmp-nvim-lsp",
 				after = 'nvim-cmp'
 			},
-
-			{
-				"L3MON4D3/LuaSnip",
-				event = 'InsertEnter'
-			},
-		}
-	}
-
-	use {'neovim/nvim-lspconfig',
-		after = "cmp-nvim-lsp",
+		},
 		config = function()
-			require("lspconfig")
+			require("configs.autocomplete").config()
 		end,
 	}
 
 	use 'mfussenegger/nvim-jdtls'
 
 	-- STATUS_LINE
-	use 'nvim-lualine/lualine.nvim'
-	
+	use 'SmiteshP/nvim-navic'
+	use {'feline-nvim/feline.nvim', 
+		config = function()
+			require("configs.feline").config()
+		end,
+	}
+
 	-- SMOOTH_SCROLL
 	use 'karb94/neoscroll.nvim'
 
 	-- LSP_LINES
 	use{"https://git.sr.ht/~whynothugo/lsp_lines.nvim"}
-
 
 	-- AUTO_PAIRS
 	use 'jiangmiao/auto-pairs'
@@ -108,9 +182,24 @@ return require('packer').startup(function()
 	opt = true,
 	keys = {"gc", "gcc", "gcb"},
     config = function()
-        require("Comment").setup{}
+		require("Comment").setup{
+			ignore = "^$",
+		}
 	end,
 	}
 
+
+
+
+
+	-- USELESS BUT COOL PLUGINS
+	
+	-- use {'eandrju/cellular-automaton.nvim',
+	-- 	config = function()
+	-- 		require("cellular-automaton").setup({})
+	-- 	end,
+	-- }
+
+	use {'tamton-aquib/duck.nvim'}
 
 end)
