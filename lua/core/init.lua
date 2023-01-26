@@ -25,8 +25,4 @@ vim.opt.softtabstop     = 4
 
 -- LOAD PLUGIN CONFIGS
 require("configs.neoscroll").config()
-<<<<<<< HEAD
 require("configs.filetype").config()
-=======
-require("configs.filetype").config()
->>>>>>> 68ebed7 (Removed some plugin initialization)
