@@ -10,7 +10,6 @@ _G.__luacache_config = {
 }
 --require('impatient').enable_profile()
 
-vim.g.did_load_filetypes = 1
 require "core.init"
 require "core.theme"
 require "core.plugins"
