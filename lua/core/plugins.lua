@@ -74,32 +74,6 @@ return require('packer').startup(function()
 		}),
 	})
 
-	-- EXPERIMENT
-	use {"K0dikas/panel.nvim",
-		branch = "experimental",
-		config = function()
-			require("panel").setup({
-					on_open = function(win)
-					local bufnr = vim.api.nvim_win_get_buf(win)
-					vim.api.nvim_win_set_cursor(win, {3, 1})
-					vim.api.nvim_win_set_option(win, "wrap", true)
-					vim.api.nvim_win_set_height(win, 50)
-
-					if bufnr then
-						vim.keymap.set("n", "<C-l>", require("panel").dismiss,
-						{noremap = true, silent = true, buffer = bufnr})
-					end
-				end,
-				max_width = 70,
-				max_height = 23,
-				minimum_width = 70,
-				stages = "slide",
-				render = "default",
-				fps = 60,
-			})
-		end,
-	}
-
 	-- FILE EXPLORER
 	use {"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
@@ -188,18 +162,8 @@ return require('packer').startup(function()
 	end,
 	}
 
-
-
-
-
 	-- USELESS BUT COOL PLUGINS
 	
-	-- use {'eandrju/cellular-automaton.nvim',
-	-- 	config = function()
-	-- 		require("cellular-automaton").setup({})
-	-- 	end,
-	-- }
-
 	use {'tamton-aquib/duck.nvim'}
 
 end)
