@@ -140,6 +140,11 @@ function M.config()
 			cmd = {"typescript-language-server", "--stdio"}
 		}
 	}
+
+	require("lsp_lines").setup{
+		require'lspconfig'.tailwindcss.setup{
+		}
+	}
 	
 	local devicons = require('nvim-web-devicons')
     cmp.register_source('devicons', {
