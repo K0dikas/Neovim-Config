@@ -120,8 +120,6 @@ function M.config()
 	require("lsp_lines").setup{
 
 		require'lspconfig'.html.setup{
-			cmd = {"vscode-html-language-server", "--stdio"},
-			filetypes = {"html"},
 			init_options = {
 				configurationSection = { "html", "css", "javascript" },
 				embeddedLanguages = {
@@ -130,7 +128,16 @@ function M.config()
 				},
 				provideFormatter = true
 			},
-			settings = {}
+			filetypes = {"html"},
+			cmd = {"html-languageserver", "--stdio"}
+		}
+	}
+
+	require("lsp_lines").setup{
+		require'lspconfig'.tsserver.setup{
+			on_attach = on_attach,
+			filetypes = {"javascript" ,"typescript", "typescriptreact", "typescript.tsx"},
+			cmd = {"typescript-language-server", "--stdio"}
 		}
 	}
 	
