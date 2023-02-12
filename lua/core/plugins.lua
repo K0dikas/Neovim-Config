@@ -112,6 +112,8 @@ return require('packer').startup(function()
 
 			{
 				"L3MON4D3/LuaSnip",
+				tag = "v<CurrentMajor>.*",
+				run = "make install_jsregexp",
 				event = 'InsertEnter'
 			},
 
