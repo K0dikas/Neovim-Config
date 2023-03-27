@@ -27,18 +27,6 @@ return require('packer').startup(function()
 		end,
 	}
 
- 	-- GPT
-	use {"jackMort/ChatGPT.nvim",
-		config = function()
-			require("configs.chatgpt").config()
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim"
-		},
-	}
-
 	-- GIT SIGNS
 	use {'lewis6991/gitsigns.nvim',
 		config = function()
