@@ -131,7 +131,7 @@ return require('packer').startup(function()
 	}
 
 	-- SMOOTH_SCROLL
-	use 'karb94/neoscroll.nvim'
+	-- use 'karb94/neoscroll.nvim'
 
 	-- LSP_LINES
 	use{"https://git.sr.ht/~whynothugo/lsp_lines.nvim"}
