@@ -6,7 +6,12 @@ require("gruvbox").setup({
     undercurl = false,
     underline = false,
     bold = true,
-    italic = true,
+	italic = {
+		strings = false,
+		comments = false,
+		operators = false,
+		folds = false,
+	},
     strikethrough = true,
     invert_selection = false,
     invert_signs = false,
