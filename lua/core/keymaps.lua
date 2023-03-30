@@ -8,8 +8,8 @@ vim.keymap.set('n', '<C-j>', '<Cmd>BufferPrevious<cr>', opts)
 vim.keymap.set('n', '<C-x>', '<Cmd>BufferClose<cr>', opts)
 
 -- Activate duck movement
-vim.keymap.set('n', '<leader>dd', function() require("duck").hatch("🦆", 13) end, {}) -- A pretty fast duck
-vim.keymap.set('n', '<leader>dc', function() require("duck").hatch("🐈", 5) end, {}) -- Quite a mellow cat
+-- vim.keymap.set('n', '<leader>dd', function() require("duck").hatch("🦆", 13) end, {}) -- A pretty fast duck
+-- vim.keymap.set('n', '<leader>dc', function() require("duck").hatch("🐈", 5) end, {}) -- Quite a mellow cat
 
 -- Activate GPT-3 
-vim.keymap.set('n', '<leader>ll', '<Cmd>ChatGPT<cr>', opts)
+-- vim.keymap.set('n', '<leader>ll', '<Cmd>ChatGPT<cr>', opts)
