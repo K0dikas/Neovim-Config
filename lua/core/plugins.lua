@@ -153,6 +153,6 @@ return require('packer').startup(function()
 
 	-- USELESS BUT COOL PLUGINS
 	
-	use {'tamton-aquib/duck.nvim'}
+	-- use {'tamton-aquib/duck.nvim'}
 
 end)
