@@ -21,6 +21,10 @@ function M.config()
 		vim.api.nvim_set_hl(0, "NotifyINFOIcon", {fg = "#b8bb26"}),
 		vim.api.nvim_set_hl(0, "NotifyINFOTitle", {fg = "#b8bb26"}),
 
+		vim.api.nvim_set_hl(0, "NotifyINFOBody", {fg = "#8ec07c"}),
+		vim.api.nvim_set_hl(0, "NotifyERRORBody", {fg = "#fabd2f"}),
+		vim.api.nvim_set_hl(0, "NotifyWARNBody", {fg = "#fabd2f"}),
+
 		cmdline = {
 			enabled = true,
 			view = "cmdline_popup", 
