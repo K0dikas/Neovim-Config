@@ -23,9 +23,6 @@ vim.opt.tabstop         = 4
 vim.opt.shiftwidth      = 4
 vim.opt.softtabstop     = 4
 
--- LOAD PLUGIN CONFIGS
-require("configs.neoscroll").config()
-
 -- DISABLE SEMANTIC HIGHLIGHTING
 local links = {
 	['@lsp.type.namespace'] = '@namespace',
