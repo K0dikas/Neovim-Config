@@ -16,7 +16,7 @@ _G.__luacache_config = {
 }
 --require('impatient').enable_profile()
 
+require "core.plugins"
 require "core.init"
 require "core.theme"
-require "core.plugins"
 require "core.keymaps"
