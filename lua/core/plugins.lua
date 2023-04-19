@@ -1,4 +1,5 @@
 -- packer.nvim
+vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
 	use {'wbthomason/packer.nvim', opt = true}
 
@@ -113,8 +114,6 @@ return require('packer').startup(function()
 			require("configs.autocomplete").config()
 		end,
 	}
-
-	use 'mfussenegger/nvim-jdtls'
 
 	-- STATUS_LINE
 	use 'SmiteshP/nvim-navic'

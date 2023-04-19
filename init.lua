@@ -1,9 +1,3 @@
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-		vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-		vim.cmd [[packadd packer.nvim]]
-	end
-
 _G.__luacache_config = {
 	chunks = {
 		enable = true,
@@ -14,7 +8,7 @@ _G.__luacache_config = {
 		path = vim.fn.stdpath('cache')..'/luacache_modpaths',
 	}
 }
---require('impatient').enable_profile()
+-- require('impatient').enable_profile()
 
 require "core.plugins"
 require "core.init"
