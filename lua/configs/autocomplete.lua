@@ -82,69 +82,13 @@ function M.config()
         -- ... Your other configuration ...
     })
 
-    require("lsp_lines").setup{
+		require "lsp.rust-analyzer".config()
+		require("lsp.lua_ls").config()
+		require("lsp.jdtls").config()
+		require("lsp.html").config()
+		require("lsp.tsserver").config()
+		require("lsp.tailwindcss").config()
 
-		require('lspconfig')['rust_analyzer'].setup{
-
-			on_attach = on_attach,
-			flags = lsp_flags,
-			settings = {
-				["rust-analyzer"] = {}
-			}
-		}
-	}
-
-    require("lsp_lines").setup{
-
-		require('lspconfig')['lua_ls'].setup{
-
-			on_attach = on_attach,
-			flags = lsp_flags,
-			settings = {
-				["lua_ls"] = {}
-			}
-		}
-	}
-
-	require("lsp_lines").setup{
-	
-		require('lspconfig')['jdtls'].setup{
-			cmd = {'jdtls'},
-			filetypes = {"java"},
-			on_attach = on_attach,
-			flags = lsp_flags,
-		}
-	}
-
-	require("lsp_lines").setup{
-
-		require'lspconfig'.html.setup{
-			init_options = {
-				configurationSection = { "html", "css", "javascript" },
-				embeddedLanguages = {
-					css = true,
-					javascript = true
-				},
-				provideFormatter = true
-			},
-			filetypes = {"html"},
-			cmd = {"html-languageserver", "--stdio"}
-		}
-	}
-
-	require("lsp_lines").setup{
-		require'lspconfig'.tsserver.setup{
-			on_attach = on_attach,
-			filetypes = {"javascript" ,"typescript", "typescriptreact", "typescript.tsx"},
-			cmd = {"typescript-language-server", "--stdio"}
-		}
-	}
-
-	require("lsp_lines").setup{
-		require'lspconfig'.tailwindcss.setup{
-		}
-	}
-	
 	local devicons = require('nvim-web-devicons')
     cmp.register_source('devicons', {
         complete = function(_, _, callback)
@@ -160,8 +104,5 @@ function M.config()
         end,
     })
 
-    require('rust-tools').setup()
-
 end
-
 return M
