@@ -13,6 +13,23 @@ function M.config()
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = '#FABD2F' }),
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = '#FABD2F' }),
 		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = '#FABD2F' }),
+
+		vim.api.nvim_set_hl(0, "NotifyERRORBorder", {fg = "#fb4934"}),
+		vim.api.nvim_set_hl(0, "NotifyERRORIcon", {fg = "#fb4934"}),
+		vim.api.nvim_set_hl(0, "NotifyERRORTitle", {fg = "#fb4934"}),
+
+		vim.api.nvim_set_hl(0, "NotifyWARNBorder", {fg = "#fabd2f"}),
+		vim.api.nvim_set_hl(0, "NotifyWARNIcon", {fg = "#fabd2f"}),
+		vim.api.nvim_set_hl(0, "NotifyWARNTitle", {fg = "#fabd2f"}),
+
+		vim.api.nvim_set_hl(0, "NotifyINFOBorder", {fg = "#b8bb26"}),
+		vim.api.nvim_set_hl(0, "NotifyINFOIcon", {fg = "#b8bb26"}),
+		vim.api.nvim_set_hl(0, "NotifyINFOTitle", {fg = "#b8bb26"}),
+
+		vim.api.nvim_set_hl(0, "NotifyINFOBody", {fg = "#8ec07c"}),
+		vim.api.nvim_set_hl(0, "NotifyERRORBody", {fg = "#fabd2f"}),
+		vim.api.nvim_set_hl(0, "NotifyWARNBody", {fg = "#fb4934"}),
+
 		cmdline = {
 			enabled = true,
 			view = "cmdline_popup", 
