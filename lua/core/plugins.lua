@@ -21,6 +21,9 @@ return require('packer').startup(function()
 			})
 		end,
 	}	
+
+	use 'mfussenegger/nvim-jdtls'
+
 	use {"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("configs.mason-lspconfig").config()
