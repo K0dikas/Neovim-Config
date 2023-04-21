@@ -3,6 +3,11 @@ local M = {}
 function M.config()
 
 	require("noice").setup({
+		require("notify").setup({
+			fps = 120,
+			stages = "slide",
+			render = "default",
+		}),
 
 		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#FABD2F" }),
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = '#FABD2F' }),

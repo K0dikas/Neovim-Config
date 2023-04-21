@@ -54,11 +54,6 @@ return require('packer').startup(function()
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
 		},
-		require("notify").setup({
-			fps = 120,
-			stages = "slide",
-			render = "default",
-		}),
 	})
 
 	-- FILE EXPLORER
