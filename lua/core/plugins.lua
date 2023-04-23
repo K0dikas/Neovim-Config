@@ -88,14 +88,10 @@ return require('packer').startup(function()
 
 	use {"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
-		config = function()
-			require("configs.autocomplete").config()
-		end,
 		requires = {
 
 			{
 				"L3MON4D3/LuaSnip",
-				tag = "v<CurrentMajor>.*",
 				run = "make install_jsregexp",
 				event = 'InsertEnter'
 			},
@@ -108,6 +104,11 @@ return require('packer').startup(function()
 			{
 				"hrsh7th/cmp-nvim-lsp",
 				after = 'nvim-cmp'
+			},
+
+			{
+				"onsails/lspkind.nvim",
+				after = 'LuaSnip'
 			},
 		},
 		config = function()
