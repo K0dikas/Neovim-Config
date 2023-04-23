@@ -8,7 +8,7 @@ _G.__luacache_config = {
 		path = vim.fn.stdpath('cache')..'/luacache_modpaths',
 	}
 }
-require('impatient').enable_profile()
+-- require('impatient').enable_profile()
 
 require "core.plugins"
 require "core.init"
