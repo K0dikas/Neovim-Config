@@ -2,165 +2,117 @@ local M = {}
 
 function M.config()
 
+	local lspkind = require('lspkind')
 	local luasnip = require 'luasnip'
-    local cmp = require 'cmp'
+	local cmp = require 'cmp'
 
 	cmp.setup({
 		snippet = {
-            -- REQUIRED - you must specify a snippet engine
+			-- REQUIRED - you must specify a snippet engine
 			expand = function(args)
 				luasnip.lsp_expand(args.body)
-            end,
-        },
+			end,
+		},
 
 		mapping = {
-            ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-            ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-            ['<C-y>'] = cmp.config.disable,
-            ['<C-e>'] = cmp.mapping({
-                i = cmp.mapping.abort(),
-                c = cmp.mapping.close(),
-            }),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        },
+			['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+			['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+			['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+			['<C-y>'] = cmp.config.disable,
+			['<C-e>'] = cmp.mapping({
+				i = cmp.mapping.abort(),
+				c = cmp.mapping.close(),
+			}),
+			['<CR>'] = cmp.mapping.confirm({ select = true }),
+		},
 
 		sources = cmp.config.sources({
-             { name = 'nvim_lsp' },
-        }, { { name = 'buffer' } })
+			{ name = 'nvim_lsp' },
+		}, { { name = 'buffer' } }),
 
-    })
+		formatting = {
+			format = lspkind.cmp_format({
+				mode = 'symbol_text',
+				maxwidth = 50,
+				ellipsis_char = '...',
+			})
+		},
+	})
 
-    -- nvim-cmp for commands
-    cmp.setup.cmdline('/', {
-        sources = {
-            { name = 'buffer' }
-        }
-    })
-    cmp.setup.cmdline(':', {
-        sources = cmp.config.sources({
-            { name = 'path' }
-        }, {
-            { name = 'cmdline' }
-        })
-    })
-	
+	-- nvim-cmp for commands
+	cmp.setup.cmdline('/', {
+		sources = {
+			{ name = 'buffer' }
+		}
+	})
+	cmp.setup.cmdline(':', {
+		sources = cmp.config.sources({
+			{ name = 'path' }
+		}, {
+			{ name = 'cmdline' }
+		})
+	})
+
 	local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
+		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+	end
 
-    cmp.setup({
+	cmp.setup({
 
-        mapping = {
+		mapping = {
 
-            ["<C-n>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item()
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                elseif has_words_before() then
-                    cmp.complete()
-                else
-                    fallback()
-                end
-            end, { "i", "s" }),
+			["<C-n>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item()
+				elseif luasnip.expand_or_jumpable() then
+					luasnip.expand_or_jump()
+				elseif has_words_before() then
+					cmp.complete()
+				else
+					fallback()
+				end
+			end, { "i", "s" }),
 
-            ["<C-p>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-                else
-                    fallback()
-                end
-            end, { "i", "s" }),
+			["<C-p>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item()
+				elseif luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				else
+					fallback()
+				end
+			end, { "i", "s" }),
 
-            -- ... Your other mappings ...
-        },
+			-- ... Your other mappings ...
+		},
 
-        -- ... Your other configuration ...
-    })
+		-- ... Your other configuration ...
+	})
 
-    require("lsp_lines").setup{
+	require "lsp.rust-analyzer".config()
+	require("lsp.lua_ls").config()
+	require("lsp.jdtls").config()
+	require("lsp.html").config()
+	require("lsp.tsserver").config()
+	require("lsp.tailwindcss").config()
 
-		require('lspconfig')['rust_analyzer'].setup{
-
-			on_attach = on_attach,
-			flags = lsp_flags,
-			settings = {
-				["rust-analyzer"] = {}
-			}
-		}
-	}
-
-    require("lsp_lines").setup{
-
-		require('lspconfig')['lua_ls'].setup{
-
-			on_attach = on_attach,
-			flags = lsp_flags,
-			settings = {
-				["lua_ls"] = {}
-			}
-		}
-	}
-
-	require("lsp_lines").setup{
-	
-		require('lspconfig')['jdtls'].setup{
-			cmd = {'jdtls'},
-			root_dir = function(fname)
-				return require'lspconfig'.util.root_pattern('pom.xml', 'gradle.build', '.git')(fname) or vim.fn.getcwd()
-			end
-		}
-	}
-
-	require("lsp_lines").setup{
-
-		require'lspconfig'.html.setup{
-			init_options = {
-				configurationSection = { "html", "css", "javascript" },
-				embeddedLanguages = {
-					css = true,
-					javascript = true
-				},
-				provideFormatter = true
-			},
-			filetypes = {"html"},
-			cmd = {"html-languageserver", "--stdio"}
-		}
-	}
-
-	require("lsp_lines").setup{
-		require'lspconfig'.tsserver.setup{
-			on_attach = on_attach,
-			filetypes = {"javascript" ,"typescript", "typescriptreact", "typescript.tsx"},
-			cmd = {"typescript-language-server", "--stdio"}
-		}
-	}
-
-	require("lsp_lines").setup{
-		require'lspconfig'.tailwindcss.setup{
-		}
-	}
-	
 	local devicons = require('nvim-web-devicons')
-    cmp.register_source('devicons', {
-        complete = function(_, _, callback)
-            local items = {}
-            for _, icon in pairs(devicons.get_icons()) do
-                table.insert(items, {
-                    label = icon.icon .. '  ' .. icon.name,
-                    insertText = icon.icon,
-                    filterText = icon.name,
-                })
-            end
-            callback({ items = items })
-        end,
-    })
+	cmp.register_source('devicons', {
+		complete = function(_, _, callback)
+			local items = {}
+			for _, icon in pairs(devicons.get_icons()) do
+				table.insert(items, {
+					label = icon.icon .. '  ' .. icon.name,
+					insertText = icon.icon,
+					filterText = icon.name,
+				})
+			end
+			callback({ items = items })
+		end,
+	})
 
-    require('rust-tools').setup()
+	require('rust-tools').setup()
 
 end
 
