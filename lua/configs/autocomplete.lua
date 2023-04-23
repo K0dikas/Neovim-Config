@@ -2,7 +2,7 @@ local M = {}
 
 function M.config()
 
-	local luasnip = require 'luasnip'
+	local luasnip = require("luasnip")
     local cmp = require 'cmp'
 
 	cmp.setup({
@@ -22,7 +22,10 @@ function M.config()
                 i = cmp.mapping.abort(),
                 c = cmp.mapping.close(),
             }),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+			['<CR>'] = cmp.mapping.confirm{
+				behavior = cmp.ConfirmBehavior.Replace,
+				select = true,
+			}
         },
 
 		sources = cmp.config.sources({

@@ -22,7 +22,9 @@ return require('packer').startup(function()
 		end,
 	}	
 
-	use 'mfussenegger/nvim-jdtls'
+	use { "mfussenegger/nvim-jdtls", 
+		-- ft = {"java"},
+	}
 
 	use {"williamboman/mason-lspconfig.nvim",
 		config = function()
@@ -91,16 +93,13 @@ return require('packer').startup(function()
 
 	use {"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
-		config = function()
-			require("configs.autocomplete").config()
-		end,
 		requires = {
 
 			{
 				"L3MON4D3/LuaSnip",
-				tag = "v<CurrentMajor>.*",
 				run = "make install_jsregexp",
-				event = 'InsertEnter'
+				event = 'InsertEnter',
+				after = 'nvim-cmp'
 			},
 
 			{
