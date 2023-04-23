@@ -111,6 +111,11 @@ return require('packer').startup(function()
 				"hrsh7th/cmp-nvim-lsp",
 				after = 'nvim-cmp'
 			},
+
+			{
+				"onsails/lspkind.nvim",
+				after = 'LuaSnip'
+			},
 		},
 		config = function()
 			require("configs.autocomplete").config()

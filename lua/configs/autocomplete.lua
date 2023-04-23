@@ -2,6 +2,7 @@ local M = {}
 
 function M.config()
 
+	local lspkind = require('lspkind')
 	local luasnip = require("luasnip")
     local cmp = require 'cmp'
 
@@ -30,8 +31,15 @@ function M.config()
 
 		sources = cmp.config.sources({
              { name = 'nvim_lsp' },
-        }, { { name = 'buffer' } })
+        }, { { name = 'buffer' } }),
 
+		formatting = {
+			format = lspkind.cmp_format({
+				mode = 'symbol_text',
+				maxwidth = 50,
+				ellipsis_char = '...',
+			})
+		},
     })
 
     -- nvim-cmp for commands
