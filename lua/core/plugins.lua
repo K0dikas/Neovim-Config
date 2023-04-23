@@ -93,7 +93,7 @@ return require('packer').startup(function()
 			{
 				"L3MON4D3/LuaSnip",
 				run = "make install_jsregexp",
-				event = 'InsertEnter'
+				after = 'nvim-cmp'
 			},
 
 			{
