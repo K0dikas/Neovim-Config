@@ -1,14 +1,25 @@
--- packer.nvim
-vim.cmd [[packadd packer.nvim]]
-return require('packer').startup(function()
-	use {'wbthomason/packer.nvim', opt = true}
+-- lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
-	-- PERFORMANCE
-	use 'lewis6991/impatient.nvim'
-	use 'dstein64/vim-startuptime'
+local plugins = {
+
+	-- PERFORMANCE (Comment out if you don't want to use them)
+	'lewis6991/impatient.nvim',
+	'dstein64/vim-startuptime',
 
 	-- MASON
-	use {"williamboman/mason.nvim",
+	{"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
 				ui = {
@@ -20,142 +31,125 @@ return require('packer').startup(function()
 				}
 			})
 		end,
-	}	
+	},
 
-	use { "mfussenegger/nvim-jdtls", 
-		-- ft = {"java"},
-	}
+	-- JAVA-LANGUAGE-SERVER
+	'mfussenegger/nvim-jdtls',
 
-	use {"williamboman/mason-lspconfig.nvim",
+	{"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("configs.mason-lspconfig").config()
 		end,
-	}
+	},
 
 	-- GIT SIGNS
-	use {'lewis6991/gitsigns.nvim',
+	{'lewis6991/gitsigns.nvim',
 		config = function()
 			require('configs.gitsigns').config()
 		end,
-	}
+	},
 
 	-- COLORSCHEMES 
-	use 'ellisonleao/gruvbox.nvim'
+	'ellisonleao/gruvbox.nvim',
 
 	-- BUFFER
-	use {'romgrk/barbar.nvim',
-		requires = {'kyazdani42/nvim-web-devicons'},
+	{'romgrk/barbar.nvim',
+		dependencies = {'kyazdani42/nvim-web-devicons'},
 		config = function()
 			require("configs.barbar").config()
 		end,
-	}
+	},
 
 	-- NOICE
-	use ({"folke/noice.nvim",
+	({"folke/noice.nvim",
 		config = function()
 			require("configs.noice").config()
 		end,
-		requires = {
+		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
 		},
-	})
+	}),
 
 	-- FILE EXPLORER
-	use {"nvim-neo-tree/neo-tree.nvim",
+	{"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 		config = function()
 			require("configs.neo-tree").config()
 		end,
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 		}
-	}	
+	},
 
 	-- LANGUAGE
-	use {'nvim-treesitter/nvim-treesitter',
-		opt = true,
-		run = ':TSUpdate',
+	{'nvim-treesitter/nvim-treesitter',
+		lazy = true,
+		build = ':TSUpdate',
 		event = "BufRead",
 		config = function()
 			require("configs.treesitter").config()
 		end,
-	}
+	},
 
-	use 'simrat39/rust-tools.nvim'
+	'simrat39/rust-tools.nvim',
 
-	use {'neovim/nvim-lspconfig',
+	{'neovim/nvim-lspconfig',
 		config = function()
 			require("lspconfig")
 		end,
-	}
+	},
 
-	use {"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		requires = {
-
-			{
+	{"hrsh7th/nvim-cmp",
+		-- event = "InsertEnter",
+		dependencies = {
 				"L3MON4D3/LuaSnip",
-				run = "make install_jsregexp",
-				after = 'nvim-cmp'
-			},
-
-			{
 				"hrsh7th/cmp-cmdline",
-				after = 'nvim-cmp'
-			},
-			
-			{
 				"hrsh7th/cmp-nvim-lsp",
-				after = 'nvim-cmp'
-			},
-
-			{
 				"onsails/lspkind.nvim",
-				after = 'LuaSnip'
-			},
 		},
 		config = function()
 			require("configs.autocomplete").config()
 		end,
-	}
+	},
 
 	-- STATUS_LINE
-	use 'SmiteshP/nvim-navic'
-	use {'feline-nvim/feline.nvim', 
+	'SmiteshP/nvim-navic',
+	{'feline-nvim/feline.nvim', 
 		config = function()
 			require("configs.feline").config()
 		end,
-	}
+	},
 
 	-- SMOOTH_SCROLL
-	use {'karb94/neoscroll.nvim',
+	{'karb94/neoscroll.nvim',
 		config = function()
 			require("configs.neoscroll").config()
 		end,
-	}
+	},
 
 	-- LSP_LINES
-	use{"https://git.sr.ht/~whynothugo/lsp_lines.nvim"}
+	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 
 	-- AUTO_PAIRS
-	use 'jiangmiao/auto-pairs'
+	'jiangmiao/auto-pairs',
 	
 	-- AUTO_COMMENT
-	use {
-    'numToStr/Comment.nvim',
-	opt = true,
+	{'numToStr/Comment.nvim',
+	lazy = true,
 	keys = {"gc", "gcc", "gcb"},
-    config = function()
+	config = function()
 		require("Comment").setup{
 			ignore = "^$",
 		}
 	end,
-	}
+	},
 
 	-- USELESS BUT COOL PLUGINS
-	
-	use {'tamton-aquib/duck.nvim'}
+	'tamton-aquib/duck.nvim',
+}
 
-end)
+local opts = {}
+
+require('lazy').setup(plugins, opts)
