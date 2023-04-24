@@ -2,7 +2,7 @@ local M = {}
 
 function M.config()
 	require("mason-lspconfig").setup({
-		ensure_installed = {"lua_ls", "tsserver", "html", "tailwindcss", "rust-analyzer"}
+		ensure_installed = {"tsserver", "html", "tailwindcss"}
 	})
 
 end
