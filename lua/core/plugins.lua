@@ -15,7 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 
 	-- PERFORMANCE (Comment out if you don't want to use them)
-	'lewis6991/impatient.nvim',
+	{'lewis6991/impatient.nvim',
+		config = function()
+			require("configs.impatient").config()
+		end,
+	},
+
 	'dstein64/vim-startuptime',
 
 	-- MASON
@@ -50,7 +55,11 @@ local plugins = {
 	},
 
 	-- COLORSCHEMES 
-	'ellisonleao/gruvbox.nvim',
+	{'ellisonleao/gruvbox.nvim',
+		config = function ()
+			require('configs.theme').config()
+		end,
+	},
 
 	-- BUFFER
 	{'romgrk/barbar.nvim',
