@@ -1,9 +1,9 @@
-local M = {}
-
-function M.config()
-	vim.cmd("set background=dark")
-	require("gruvbox").setup({
-
+local M = {
+	"ellisonleao/gruvbox.nvim",
+	event = "BufReadPre",
+	lazy = false,
+	priority = 1000,
+	opts = {
 		undercurl = false,
 		underline = false,
 		bold = true,
@@ -21,7 +21,9 @@ function M.config()
 		inverse = true, -- invert background for search, diffs, statuslinesand errors
 		contrast = "hard",  -- can be "hard", "soft" or empty string
 		overrides = {},
-	})
-	vim.cmd("colorscheme gruvbox")
-end 
+	vim.cmd("set background=dark"),
+	--vim.cmd("colorscheme gruvbox"),
+	},
+}
+
 return M

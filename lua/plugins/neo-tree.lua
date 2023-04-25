@@ -1,9 +1,10 @@
-local M = {}
-
-function M.config()
-
-	require("neo-tree").setup({
-
+local M = {
+	"nvim-neo-tree/neo-tree.nvim",
+	dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+	opts = {
 		close_if_last_window = false, 
         popup_border_style = "rounded",
         enable_git_status = true,
@@ -163,7 +164,7 @@ function M.config()
             }
           }
         }
-	})
+	},
+}
 
-	end
 return M

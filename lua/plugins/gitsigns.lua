@@ -1,7 +1,7 @@
-local M = {}
-
-function M.config()
-	require('gitsigns').setup{
+local M = {
+	"lewis6991/gitsigns.nvim",
+	event = "BufReadPre",
+	opts = {
 		signs = {
 			add          = {hl = 'GitSignsAdd'   , text = ' ', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
 			change       = {hl = 'GitSignsChange', text = '▎', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
@@ -64,7 +64,7 @@ function M.config()
 		yadm = {
 			enable = false
 		},
-	}
+	},
+}
 
-end
 return M

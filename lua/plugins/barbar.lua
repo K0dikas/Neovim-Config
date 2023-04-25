@@ -1,7 +1,10 @@
-local M = {}
-
-function M.config()
-	require('barbar').setup {
+local M = {
+	'romgrk/barbar.nvim',
+	dependencies = {
+		"kyazdani42/nvim-web-devicons",
+	},
+	event = "VeryLazy",
+	opts = {
 		animation = true,
 		auto_hide = true,
 		tabpages = true,
@@ -93,7 +96,7 @@ function M.config()
 		-- Sets the name of unnamed buffers. By default format is "[Buffer X]"
 		-- where X is the buffer number. But only a static string is accepted here.
 		no_name_title = nil,
-	}
-end
+	},
+}
 
 return M

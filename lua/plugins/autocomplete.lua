@@ -1,12 +1,30 @@
-local M = {}
+local M = {
+	"hrsh7th/nvim-cmp",
+	event = "BufReadPre",
+	dependencies = {
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-path",
+		"L3MON4D3/LuaSnip",
+		"onsails/lspkind.nvim",
+	},
+}
 
-function M.config()
-
+opts = function()
+	local cmp = require('cmp')
+	local lsp_kinds = require("utils").lsp_kinds
+	local has_words_before = function()
+		if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+			return false
+		end
+		local line, col = vim.F.unpack_len(vim.api.nvim_win_get_cursor(0))
+		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+	end
 	local lspkind = require('lspkind')
 	local luasnip = require("luasnip")
-	local cmp = require 'cmp'
 
-	cmp.setup({
+	return {
 		snippet = {
 			-- REQUIRED - you must specify a snippet engine
 			expand = function(args)
@@ -65,10 +83,12 @@ function M.config()
 				ellipsis_char = '...',
 			})
 		},
-	})
+	}
+end
 
+config = function(_, opts)
 	-- nvim-cmp for commands
-	cmp.setup.cmdline('/', {
+	cmp.setup.cmdline({'/', '?'}, {
 		sources = {
 			{ name = 'buffer' }
 		}
@@ -78,35 +98,20 @@ function M.config()
 			{ name = 'path' }
 		}, {
 			{ name = 'cmdline' }
-		})
+		}),
 	})
-
-	local has_words_before = function()
-		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-	end
-
-	require "lsp.rust-analyzer".config()
-	require("lsp.lua_ls").config()
-	require("lsp.jdtls").config()
-	require("lsp.html").config()
-	require("lsp.tsserver").config()
-	require("lsp.tailwindcss").config()
-
-	local devicons = require('nvim-web-devicons')
-	cmp.register_source('devicons', {
-		complete = function(_, _, callback)
-			local items = {}
-			for _, icon in pairs(devicons.get_icons()) do
-				table.insert(items, {
-					label = icon.icon .. '  ' .. icon.name,
-					insertText = icon.icon,
-					filterText = icon.name,
-				})
-			end
-			callback({ items = items })
-		end,
-	})
-
 end
+
+local has_words_before = function()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+--require "lsp.rust-analyzer".config()
+--require("lsp.lua_ls").config()
+--require("lsp.jdtls").config()
+--require("lsp.html").config()
+--require("lsp.tsserver").config()
+--require("lsp.tailwindcss").config()
+
 return M

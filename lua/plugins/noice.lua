@@ -1,14 +1,11 @@
-local M = {}
-
-function M.config()
-
-	require("noice").setup({
-		require("notify").setup({
-			fps = 120,
-			stages = "slide",
-			render = "default",
-		}),
-
+local M = {
+	"folke/noice.nvim",
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify",
+	},
+	event = "VeryLazy",
+	opts = {
 		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#FABD2F" }),
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = '#FABD2F' }),
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = '#FABD2F' }),
@@ -126,7 +123,7 @@ function M.config()
 		routes = {},
 		status = {},
 		format = {},
-	})
+	},
+}
 
-end
 return M

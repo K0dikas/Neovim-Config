@@ -1,3 +1,3 @@
-require "core.init"
-require "core.plugins"
-require "core.keymaps"
+require("config.options")
+require("config.lazy")
+require("config.keymaps")
