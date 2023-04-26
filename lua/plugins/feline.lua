@@ -8,7 +8,6 @@ return {
 	config = function()
 		local vi_mode_utils = require("feline.providers.vi_mode")
 		local lsp = require('feline.providers.lsp')
-		local navic = require("nvim-navic")
 
 		local force_inactive = {
 			filetypes = {},
