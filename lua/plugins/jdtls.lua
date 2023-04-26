@@ -1,5 +1,3 @@
-local M = {
+return {
 	"mfussenegger/nvim-jdtls",
 }
-
-return M
