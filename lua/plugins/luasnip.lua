@@ -1,4 +1,4 @@
-local M = {
+return {
 	"L3MON4D3/LuaSnip",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
@@ -8,5 +8,3 @@ local M = {
 	},
 	config = true,
 }
-
-return M
