@@ -22,8 +22,8 @@ return {
 			inverse = true, -- invert background for search, diffs, statuslinesand errors
 			contrast = "hard",  -- can be "hard", "soft" or empty string
 			overrides = {},
-			vim.cmd("colorscheme gruvbox"),
-			vim.cmd("set background=dark"),
+			vim.cmd("set background=dark")
 		})
+			vim.cmd("colorscheme gruvbox")
 	end,
 }
