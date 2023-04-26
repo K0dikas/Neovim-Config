@@ -4,7 +4,7 @@ return {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",
 	},
-	event = "VeryLazy",
+	event = "BufWinEnter",
 	config = function()
 		require("noice").setup({
 			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#FABD2F" }),

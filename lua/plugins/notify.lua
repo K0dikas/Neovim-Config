@@ -1,6 +1,6 @@
 return {
 	"rcarriga/nvim-notify",
-	event = "VeryLazy",
+	event = "BufWinEnter",
 	config = function()
 		require("notify").setup({
 			fps = 60,

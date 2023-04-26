@@ -4,7 +4,7 @@ return {
 		"SmiteshP/nvim-navic",
 		"kyazdani42/nvim-web-devicons",
 	},
-	event = "VeryLazy",
+	event = "BufWinEnter",
 	config = function()
 		local vi_mode_utils = require("feline.providers.vi_mode")
 		local lsp = require('feline.providers.lsp')

@@ -1,6 +1,6 @@
 return {
 	"karb94/neoscroll.nvim",
-	event = "VeryLazy",
+	event = "BufWinEnter",
 	config = function()
 		require("neoscroll").setup{
 			mappings = {'<C-u>', '<C-d>', '<C-f>',

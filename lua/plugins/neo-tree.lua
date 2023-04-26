@@ -1,6 +1,6 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	event = "VeryLazy",
+	event = "BufReadPost",
 	dependencies = {
 		'romgrk/barbar.nvim',
 		"nvim-lua/plenary.nvim",
