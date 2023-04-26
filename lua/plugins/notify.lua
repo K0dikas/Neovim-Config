@@ -1,12 +1,11 @@
-local M = {
+return {
 	"rcarriga/nvim-notify",
 	event = "VeryLazy",
-	opts = {
-		timeout = 2000,
-		fps = 60,
-		stages = "slide",
-		render = "default",
-	},
+	config = function()
+		require("notify").setup({
+			fps = 60,
+			stages = "slide",
+			render = "default",
+		})
+	end,
 }
-
-return M
