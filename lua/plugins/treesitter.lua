@@ -1,11 +1,12 @@
-local M = {
+return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	event = "BufReadPost",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-refactor",
 	},
-	opts = {
+	config = function()
+		require("nvim-treesitter.configs").setup{
 		highlight = {
 			enable = true,
 			disable = function(lang, buf)
@@ -31,10 +32,7 @@ local M = {
 			},
 			highlight_current_scope = { enable = false },
 		},
-	},
 
-	config = function(_, opts)
-		require("nvim-treesitter.configs").setup(opts)
-	end
+		}
+	end,
 }
-return M
