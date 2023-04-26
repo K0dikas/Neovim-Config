@@ -1,6 +1,6 @@
 return {
 	"ellisonleao/gruvbox.nvim",
-	event = "BufReadPre",
+	event = "VeryLazy",
 	lazy = false,
 	priority = 1000,
 	config = function()

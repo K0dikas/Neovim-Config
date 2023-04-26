@@ -1,6 +1,8 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
+	event = "VeryLazy",
 	dependencies = {
+		'romgrk/barbar.nvim',
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 	},
