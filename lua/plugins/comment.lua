@@ -1,10 +1,10 @@
-local M = {
+return {
 	"numToStr/Comment.nvim",
 	lazy = true,
-	ignore = "^$",
-	keys = {
-		"gc",
-		"gcc"
-	},
+	keys = {"gc", "gcc"},
+	config = function()
+		require("Comment").setup{
+			ignore = "^$",
+		}
+	end,
 }
-return M
