@@ -1,11 +1,11 @@
-local M = {
+return {
 	"feline-nvim/feline.nvim",
 	dependencies = {
 		"SmiteshP/nvim-navic",
 		"kyazdani42/nvim-web-devicons",
 	},
 	event = "VeryLazy",
-	opts = function ()
+	config = function()
 		local vi_mode_utils = require("feline.providers.vi_mode")
 		local lsp = require('feline.providers.lsp')
 		local navic = require("nvim-navic")
@@ -352,8 +352,5 @@ local M = {
 			components = components,
 			vi_mode_colors = vi_mode_colors,
 		})
-
-	end
+	end,
 }
-
-return M
