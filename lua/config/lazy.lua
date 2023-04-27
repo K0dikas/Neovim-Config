@@ -59,6 +59,29 @@ require("lazy").setup("plugins", {
 		notify = false, -- get a notification when changes are found
 	},
 	performance = {
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"netrw",
+				"netrwPlugin",
+				"netrwSettings",
+				"netrwFileHandlers",
+				"gzip",
+				"zip",
+				"zipPlugin",
+				"tar",
+				"tarPlugin",
+				"getscript",
+				"getscriptPlugin",
+				"vimball",
+				"vimballPlugin",
+				"2html_plugin",
+				"logipat",
+				"rrhelper",
+				"spellfile_plugin",
+				"matchit"
+			},
+		},
 		cache = {
 			enabled = true,
 		},
