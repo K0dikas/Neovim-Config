@@ -1,5 +1,6 @@
 return {
 	"feline-nvim/feline.nvim",
+	lazy = true,
 	dependencies = {
 		"SmiteshP/nvim-navic",
 		"kyazdani42/nvim-web-devicons",

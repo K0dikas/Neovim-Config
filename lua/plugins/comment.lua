@@ -1,7 +1,7 @@
 return {
 	"numToStr/Comment.nvim",
 	lazy = true,
-	keys = {"gc", "gcc"},
+	keys = {"gcc", "gc"},
 	config = function()
 		require("Comment").setup{
 			ignore = "^$",

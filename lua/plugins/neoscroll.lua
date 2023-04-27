@@ -1,5 +1,6 @@
 return {
 	"karb94/neoscroll.nvim",
+	lazy = true,
 	event = "BufWinEnter",
 	config = function()
 		require("neoscroll").setup{

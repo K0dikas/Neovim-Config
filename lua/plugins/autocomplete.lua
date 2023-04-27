@@ -8,6 +8,8 @@ return {
 		"hrsh7th/cmp-path",
 		"L3MON4D3/LuaSnip",
 		"onsails/lspkind.nvim",
+		"rafamadriz/friendly-snippets",
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
 	config = function()
 		local cmp = require('cmp')
@@ -103,7 +105,7 @@ return {
 		end
 
 		--require "lsp.rust-analyzer".config()
-		--require("lsp.lua_ls").config()
+		-- require("plugins.lsp.lua_ls").config()
 		--require("lsp.jdtls").config()
 		--require("lsp.html").config()
 		--require("lsp.tsserver").config()
@@ -123,5 +125,6 @@ return {
 				callback({ items = items })
 			end,
 		})
+		require("luasnip.loaders.from_vscode").lazy_load()
 	end,
 }

@@ -7,6 +7,11 @@ return {
 	event = "BufWinEnter",
 	config = function()
 		require("noice").setup({
+			require("notify").setup({
+				fps = 120,
+				stages = "slide",
+				render = "default",
+			}),
 			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#FABD2F" }),
 			vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = '#FABD2F' }),
 			vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = '#FABD2F' }),
@@ -120,7 +125,7 @@ return {
 			},
 
 			throttle = 1000 / 30,
-		views = {},
+			views = {},
 			routes = {},
 			status = {},
 			format = {},
