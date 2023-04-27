@@ -1,7 +1,6 @@
 local M = {}
 
 function M.config()
-
 	local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	local on_attach = on_attach
 
@@ -13,7 +12,7 @@ function M.config()
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = {
-				["java"] = {}
+			["java"] = {}
 			}
 		}
 	}

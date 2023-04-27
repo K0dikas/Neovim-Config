@@ -10,7 +10,7 @@ vim.opt.showmode		= false
 vim.opt.cmdheight		= 0
 vim.diagnostic.config({
 	virtual_text = false,
-	virtual_lines = true, 
+	virtual_lines = true,
 })
 
 if (vim.fn.has('termguicolors') == 1) then
