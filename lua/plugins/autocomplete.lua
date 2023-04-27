@@ -13,7 +13,6 @@ return {
 	},
 	config = function()
 		local cmp = require('cmp')
-		local lsp_kinds = require("utils").lsp_kinds
 		local has_words_before = function()
 			if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
 				return false
@@ -49,7 +48,7 @@ return {
 
 
 				["<C-n>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
+				if cmp.visible() then
 						cmp.select_next_item()
 					elseif luasnip.expand_or_jumpable() then
 						luasnip.expand_or_jump()
@@ -61,7 +60,7 @@ return {
 					end, { "i", "s" }),
 
 				["<C-p>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
+				if cmp.visible() then
 						cmp.select_prev_item()
 					elseif luasnip.jumpable(-1) then
 					luasnip.jump(-1)
@@ -73,7 +72,7 @@ return {
 			},
 
 			sources = cmp.config.sources({
-				{ name = 'nvim_lsp' },
+				{ name = 'nvim_lsp'},
 				}, { { name = 'buffer' } }),
 
 			formatting = {
@@ -82,6 +81,17 @@ return {
 					maxwidth = 50,
 					ellipsis_char = '...',
 				})
+			},
+			vim.api.nvim_set_hl(0, "TextColor", {fg = "#fb4934"}),
+			vim.api.nvim_set_hl(0, "TextColor_Selection", {bg = "#3c3836", fg = "#b8bb26"}),
+			vim.api.nvim_set_hl(0, "BorderColor", {fg = "#fabd2f"}),
+			window = {
+				completion = cmp.config.window.bordered({
+					winhighlight = "Normal:Normal,FloatBorder:BorderColor,CursorLine:TextColor_Selection,Search:None",
+				}),
+				documentation = cmp.config.window.bordered({
+					winhighlight = "Normal:Normal,FloatBorder:BorderColor,CursorLine:CursorLine,Search:None",
+				}),
 			},
 		})
 
@@ -98,18 +108,6 @@ return {
 					{ name = 'cmdline' }
 			})
 		})
-
-		local has_words_before = function()
-			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-		end
-
-		--require "lsp.rust-analyzer".config()
-		-- require("plugins.lsp.lua_ls").config()
-		--require("lsp.jdtls").config()
-		--require("lsp.html").config()
-		--require("lsp.tsserver").config()
-		--require("lsp.tailwindcss").config()
 
 		local devicons = require('nvim-web-devicons')
 		cmp.register_source('devicons', {
