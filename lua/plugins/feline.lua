@@ -21,23 +21,44 @@ return {
 			inactive = {{}, {}, {}},
 		}
 
+		-- vi mode text
+		local vi_mode_text = {
+			n = "NORMAL",
+			i = "INSERT",
+			v = "VISUAL",
+			[''] = "V-BLOCK",
+			V = "V-LINE",
+			c = "COMMAND",
+			R = "REPLACE",
+			r = "REPLACE",
+			t = "INSERT",
+			no = "UNKNOWN",
+			s = "UNKNOWN",
+			S = "UNKNOWN",
+			ic = "UNKNOWN",
+			Rv = "UNKNOWN",
+			cv = "UNKWON",
+			ce = "UNKNOWN",
+			rm = "UNKNOWN",
+		}
+
 		-- vi mode color configuration
 		local vi_mode_colors = {
-			['NORMAL'] = "#98971a",
-			['COMMAND'] = '#8f3f71',
-			['INSERT'] = "#fabd2f",
-			['REPLACE'] = 'red',
-			['LINES'] = 'violet',
-			['VISUAL'] = 'violet',
-			['OP'] = 'yellow',
-			['BLOCK'] = 'yellow',
-			['V-REPLACE'] = 'yellow',
-			['ENTER'] = 'yellow',
-			['MORE'] = 'yellow',
-			['SELECT'] = 'yellow',
-			['SHELL'] = 'yellow',
-			['TERM'] = 'yellow',
-			['NONE'] = 'yellow',
+			['NORMAL'] = "#B8BB26",  -- BRIGHT GREEN (GRUVBOX)
+			['COMMAND'] = '#D3869B', -- BRIGHT PURPLE (GRUVBOX)
+			['INSERT'] = "#8EC07C",  -- BRIGHT YELLOW (GRUVBOX)
+			['REPLACE'] = '#FB4934', -- BRIGHT RED (GRUVBOX)
+			['LINES'] = '#D3869B',   -- BRIGHT PURPLE (GRUVBOX)
+			['VISUAL'] = '#D3869B',  -- BRIGHT PURPLE (GRUVBOX)
+			['OP'] = '#FABD2F',
+			['BLOCK'] = '#FABD2F',
+			['V-REPLACE'] = '#FABD2F',
+			['ENTER'] = '#FABD2F',
+			['MORE'] = '#FABD2F',
+			['SELECT'] = '#FABD2F',
+			['SHELL'] = '#FABD2F',
+			['TERM'] = '#FABD2F',
+			['NONE'] = '#FABD2F',
 		}
 
 		-- gruvbox theme
@@ -91,7 +112,10 @@ return {
 
 		-- vi-mode
 		components.active[1][1] = {
-			provider = ' NV-IDE ',
+			provider = function()
+				local current_text = ' '..vi_mode_text[vim.fn.mode()]..' '
+				return current_text
+			end,
 			hl = function()
 				local val = {}
 
