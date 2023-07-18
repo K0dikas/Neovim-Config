@@ -12,12 +12,18 @@ function M.config()
 			on_attach = on_attach,
 			flags = lsp_flags,
 			settings = {
-				["rust-analyzer"] = {}
+				["rust-analyzer"] = {
+					checkOnSave = true,
+					check = {
+						enable = true,
+						command = "clippy",
+						features = "all",
+					},
+				},
 			}
 		}
 	}
 
-	require('rust-tools').setup()
-
 end
+	require('rust-tools').setup()
 return M
