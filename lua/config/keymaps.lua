@@ -1,6 +1,7 @@
 local opts = {noremap = true, silent = true}
 
-vim.keymap.set('n', '<C-b>', ':NeoTreeShow<cr>')
+vim.keymap.set('n', '<C-b>', ':Neotree show<cr>', opts)
+vim.keymap.set('n', '<C-s>', ':Neotree close<cr>', opts)
 
 -- Move to the next buffer
 vim.keymap.set('n', '<C-k>', '<Cmd>BufferNext<cr>', opts)
