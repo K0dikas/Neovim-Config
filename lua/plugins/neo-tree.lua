@@ -1,5 +1,6 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
+	branch = "v3.x",
 	event = "BufReadPost",
 	dependencies = {
 		'romgrk/barbar.nvim',
@@ -122,7 +123,6 @@ return {
 					never_show_by_pattern = { 
 					},
 				},
-				follow_current_file = false, 
 				group_empty_dirs = false, 
 				hijack_netrw_behavior = "open_default", 
 				use_libuv_file_watcher = false, 
@@ -142,7 +142,6 @@ return {
 				}
 			},
 			buffers = {
-				follow_current_file = true, 
 				group_empty_dirs = true, 
 				show_unloaded = true,
 				window = {
