@@ -13,6 +13,15 @@ return {
 			require("plugins.lsp.html").config()
 			require("plugins.lsp.tsserver").config()
 			require("plugins.lsp.tailwindcss").config()
+			require("plugins.lsp.pyright").config()
+		end,
+	},
+
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		ft = {"python"},
+		opts = function()
+			return require("plugins.lsp.null-ls")
 		end,
 	},
 
