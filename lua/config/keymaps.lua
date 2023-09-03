@@ -1,5 +1,6 @@
 local opts = {noremap = true, silent = true}
 
+vim.keymap.set('i', '<C-c>', '<Esc>', opts)
 vim.keymap.set('n', '<C-b>', ':Neotree show<cr>', opts)
 vim.keymap.set('n', '<C-s>', ':Neotree close<cr>', opts)
 
