@@ -1,4 +1,4 @@
 return {
-	"simrat39/rust-tools.nvim",
-	event = "VeryLazy",
+    "simrat39/rust-tools.nvim",
+    event = "VeryLazy",
 }
