@@ -1,4 +1,4 @@
 return {
-	"mfussenegger/nvim-jdtls",
-	event = "VeryLazy",
+    "mfussenegger/nvim-jdtls",
+    event = "VeryLazy",
 }
