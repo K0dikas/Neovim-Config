@@ -14,6 +14,7 @@ return {
             require("plugins.lsp.tsserver").config()
             require("plugins.lsp.tailwindcss").config()
             require("plugins.lsp.pyright").config()
+            require("plugins.lsp.clangd").config()
         end,
     },
 
