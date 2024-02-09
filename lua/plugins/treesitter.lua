@@ -15,7 +15,7 @@ return {
                 end,
                 additional_vim_regex_highlighting = false, -- disable standard vim highlighting
             },
-            ensure_installed = { "c", "cpp", "rust", "java", "lua", "bash", "markdown", "markdown_inline", "python"},
+            ensure_installed = { "c", "cpp", "rust", "java", "lua", "bash", "markdown", "markdown_inline", "python", "c_sharp"},
             sync_install = true,
             ignore_install = {},
             autopairs = { enable = true },

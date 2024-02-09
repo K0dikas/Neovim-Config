@@ -15,6 +15,7 @@ return {
             require("plugins.lsp.tailwindcss").config()
             require("plugins.lsp.pyright").config()
             require("plugins.lsp.clangd").config()
+            require("plugins.lsp.omnisharp").config()
         end,
     },
 
