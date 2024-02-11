@@ -16,6 +16,7 @@ return {
             require("plugins.lsp.pyright").config()
             require("plugins.lsp.clangd").config()
             require("plugins.lsp.omnisharp").config()
+            require("plugins.lsp.slint-lsp").config()
         end,
     },
 
