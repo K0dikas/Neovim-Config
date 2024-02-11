@@ -24,6 +24,7 @@ vim.opt.smartindent     = true
 vim.opt.cindent         = true
 vim.opt.tabstop         = 8
 vim.opt.shiftwidth      = 4
+vim.cmd [[autocmd BufRead,BufNewFile *.slint set filetype=slint]]
 -- vim.opt.softtabstop     = 4
 
 -- DISABLE SEMANTIC HIGHLIGHTING
