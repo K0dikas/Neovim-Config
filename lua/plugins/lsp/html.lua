@@ -1,9 +1,13 @@
 local M = {}
 
+local capabilities = vim.lsp.protocol.make_client_capabilities();
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 function M.config()
     require("lsp_lines").setup{
 
         require'lspconfig'.html.setup{
+            capabilities = capabilities,
             init_options = {
                 configurationSection = { "html", "css", "javascript" },
                 embeddedLanguages = {
@@ -12,7 +16,7 @@ function M.config()
                 },
                 provideFormatter = true
             },
-            filetypes = {"html"},
+            filetypes = {"html", "css"},
             cmd = {"html-languageserver", "--stdio"}
         }
     }
