@@ -12,7 +12,7 @@ return {
             require("plugins.lsp.jdtls").config()
             require("plugins.lsp.html").config()
             require("plugins.lsp.tsserver").config()
-            require("plugins.lsp.tailwindcss").config()
+            require("plugins.lsp.csslsp").config()
             require("plugins.lsp.pyright").config()
             require("plugins.lsp.clangd").config()
             require("plugins.lsp.omnisharp").config()
