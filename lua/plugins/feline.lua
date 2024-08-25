@@ -1,5 +1,4 @@
 return {
-<<<<<<< Updated upstream
     "freddiehaddad/feline.nvim",
     lazy = true,
     dependencies = {
@@ -10,18 +9,6 @@ return {
     config = function()
         local vi_mode_utils = require("feline.providers.vi_mode")
         local lsp = require('feline.providers.lsp')
-=======
-	"freddiehaddad/feline.nvim",
-	lazy = true,
-	dependencies = {
-		"SmiteshP/nvim-navic",
-		"kyazdani42/nvim-web-devicons",
-	},
-	event = "BufWinEnter",
-	config = function()
-		local vi_mode_utils = require("feline.providers.vi_mode")
-		local lsp = require('feline.providers.lsp')
->>>>>>> Stashed changes
 
         local force_inactive = {
             filetypes = {},
